@@ -9,6 +9,7 @@ import { DataSource } from 'typeorm';
 import { UserController } from './user/user.controller';
 import { UserModule } from './user/user.module';
 import { User } from './user/user.entity';
+import { TestModule } from './test/test.module';
 
 console.log(getConfig);
 
@@ -29,8 +30,10 @@ console.log(getConfig);
       database: 'blog',
       entities: [User],
       synchronize: true,
+      autoLoadEntities: true,
     }),
     UserModule,
+    TestModule,
   ],
   controllers: [AppController, ArticleController, UserController],
   providers: [AppService],
