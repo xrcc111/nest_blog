@@ -10,6 +10,6 @@ export class Test {
   @Column()
   password: string;
 
-  @Column()
+  @Column('int')
   age: number;
 }

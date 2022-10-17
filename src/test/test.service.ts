@@ -11,8 +11,8 @@ export class TestService {
     @InjectRepository(Test)
     private TestRepository: Repository<Test>,
   ) {}
-  create(createTestDto: CreateTestDto) {
-    return 'This action adds a new test';
+  async create(createTestDto: CreateTestDto): Promise<Test> {
+    return await this.TestRepository.save(createTestDto);
   }
 
   findAll(): Promise<Test[]> {
@@ -20,8 +20,6 @@ export class TestService {
   }
 
   findOne(id: number): Promise<Test> {
-    debugger;
-    console.log(id);
     return this.TestRepository.findOne({
       where: {
         id,
@@ -29,11 +27,12 @@ export class TestService {
     });
   }
 
-  update(id: number, updateTestDto: UpdateTestDto) {
-    return `This action updates a #${id} test`;
+  async update(id: number, updateTestDto: UpdateTestDto) {
+    console.log(id, updateTestDto);
+    return await this.TestRepository.update(id, updateTestDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} test`;
+  async remove(id: number): Promise<any> {
+    return await this.TestRepository.delete(id);
   }
 }
