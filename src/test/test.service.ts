@@ -28,7 +28,6 @@ export class TestService {
   }
 
   async update(id: number, updateTestDto: UpdateTestDto) {
-    console.log(id, updateTestDto);
     return await this.TestRepository.update(id, updateTestDto);
   }
 
